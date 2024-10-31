@@ -104,8 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <div class="container">
+    <br>
     <h1>Create Invoice</h1>
+    <br>
     <hr>
+    <br><br>
     <?php if (!empty($message)): ?>
         <div class="<?php echo ($message == "Invoice created successfully!") ? 'alert-success' : 'alert-error'; ?>">
             <strong><?php echo $message; ?></strong>
