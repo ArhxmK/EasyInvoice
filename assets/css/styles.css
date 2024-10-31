@@ -1,0 +1,171 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
+
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 250px;
+    background: #952990;
+    color: white;
+    position: fixed;
+    height: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    z-index: 1000;
+    left: 0;
+}
+
+/* Sidebar hidden off-screen for smaller screens */
+#sidebar.collapsed {
+    width: 0;
+    left: -250px;
+}
+
+/* Toggle Button Styles */
+#sidebarToggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+/* Sidebar Header Alignment */
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.sidebar-header h3 {
+    font-size: 20px;
+    margin-top: 50px;
+    line-height: 1;
+}
+
+/* Sidebar Menu */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 15px 20px;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+ul li a.active {
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+/* Content Styles */
+#content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s ease;
+}
+
+/* Content moves when sidebar collapses */
+#content.collapsed {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Dashboard Cards */
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: white;
+    width: 30%;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Specific card colors */
+.card-1 {
+    background-color: #f39c12;
+}
+
+.card-2 {
+    background-color: #3498db;
+}
+
+.card-3 {
+    background-color: #2ecc71;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 70%;  /* Sidebar covers 70% of the screen on smaller devices */
+        left: 0;
+    }
+
+    #sidebar.collapsed {
+        left: -70%;  /* Slide the sidebar off-screen by 70% */
+    }
+
+    #content {
+        margin-left: 0;  /* Content takes full width when sidebar is hidden */
+    }
+
+    .card {
+        width: 100%;  /* Cards take full width on smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
+/* Even smaller screens (below 480px) */
+@media (max-width: 480px) {
+    #sidebar {
+        width: 70%;  /* Sidebar covers 70% of the screen */
+        left: 0;
+    }
+
+    #sidebar.collapsed {
+        left: -70%;  /* Hide sidebar off-screen by 70% */
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
