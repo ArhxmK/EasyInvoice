@@ -20,16 +20,18 @@ class Customer {
     public function register($title, $first_name, $middle_name, $last_name, $contact_no, $district) {
         $sql = "INSERT INTO customer (title, first_name, middle_name, last_name, contact_no, district) 
                 VALUES (?, ?, ?, ?, ?, ?)";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ssssss", $title, $first_name, $middle_name, $last_name, $contact_no, $district);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $stmt->execute();
     }
+}
+
+// Fetch district options from the database
+function getDistricts($conn) {
+    $sql = "SELECT id, district FROM district";
+    $result = $conn->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 // Initialize variables for form data and message
@@ -37,7 +39,6 @@ $message = "";
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
     $title = $_POST['title'];
     $first_name = $_POST['first_name'];
     $middle_name = $_POST['middle_name'];
@@ -45,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact_no = $_POST['contact_no'];
     $district = $_POST['district'];
 
-    // Instantiate the Customer class and register the customer
     $customer = new Customer($conn);
     if ($customer->register($title, $first_name, $middle_name, $last_name, $contact_no, $district)) {
         $message = "Customer registered successfully!";
@@ -53,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Error registering customer.";
     }
 }
+
+// Retrieve districts for dropdown
+$districts = getDistricts($conn);
 ?>
 
 <style>
@@ -153,7 +156,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="contact_no" id="contact_no" required maxlength="10" pattern="\d{10}" title="Enter a valid 10-digit phone number">
 
             <label for="district">District:</label>
-            <input type="text" name="district" id="district" required>
+            <select name="district" id="district" required>
+                <option value="">Select District</option>
+                <?php foreach ($districts as $dist): ?>
+                    <option value="<?php echo $dist['id']; ?>"><?php echo htmlspecialchars($dist['district']); ?></option>
+                <?php endforeach; ?>
+            </select>
 
             <button type="submit">Register Customer</button>
         </form>
