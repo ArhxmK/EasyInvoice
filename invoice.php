@@ -90,20 +90,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+   <style>
+    .container {
+        padding: 20px;
+        max-width: 1500px; /* Narrower max width */
+        margin: auto;
+        
+    }
+    h1 {
+        text-align: center; /* Left-align heading */
+        margin-bottom: 15px;
+    }
+    .alert-success, .alert-error {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .alert-error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
 
-<style>
-    .container { padding: 20px; max-width: 800px; margin: auto; }
-    .alert-success, .alert-error { padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
-    .alert-success { background-color: #d4edda; color: #155724; }
-    .alert-error { background-color: #f8d7da; color: #721c24; }
-    .invoice-form, .invoice-item { padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; margin-bottom: 40px; }
-    .invoice-form label, .invoice-item label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .invoice-form input, .invoice-form select, .invoice-item input { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; }
-    .add-item-btn { margin-top: 10px; background-color: #28a745; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; }
-    .add-item-btn:hover { background-color: #218838; }
+    /* Form Styles */
+    .invoice-form, .invoice-item {
+        padding: 15px; /* Reduced padding for compact form */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+    }
+    .invoice-form label, .invoice-item label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .invoice-form input, .invoice-form select, .invoice-item input {
+        width: 100%;
+        padding: 6px; /* Smaller padding for inputs */
+        margin-bottom: 10px; /* Reduced spacing between fields */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    /* Button Styling */
+    .add-item-btn, .submit {
+        margin-top: 10px;
+        background-color: #952990;
+        color: white;
+        padding: 8px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+    .add-item-btn:hover, .submit:hover {
+        background-color: #631B60;
+    }
 </style>
 
-<div class="container">
+<div class="wrapper">
+    <button id="sidebarToggle">&#9776;</button>
+    <div id="content" class="container">
     <br>
     <h1>Create Invoice</h1>
     <br>
@@ -148,8 +204,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="button" class="add-item-btn" onclick="addItem()">Add Another Item</button>
         <br><br>
-        <button type="submit">Create Invoice</button>
+        <button type="submit" class="submit">Create Invoice</button>
     </form>
+</div>
 </div>
 
 <script>
@@ -185,3 +242,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         itemsContainer.appendChild(itemDiv);
     }
 </script>
+<script src="assets/js/script.js"></script>

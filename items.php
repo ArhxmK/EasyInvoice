@@ -58,10 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <style>
-    .container {
-         padding: 20px;
-         max-width: 800px; 
-         margin: auto; }
+     .container {
+        padding: 20px;
+        max-width: 1500px;
+        margin: auto;
+    }
     h1, h2 { 
         text-align: center; 
         margin-bottom: 20px; }
@@ -105,11 +106,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #631B60; }
 
 </style>
-
+<div class="wrapper">
 <!-- Sidebar Toggle Button -->
 <button id="sidebarToggle">&#9776;</button>
 
-<div class="container">
+<div id="content" class="container">
     <h1>Add New Item</h1>
     <hr>
     <br><br>

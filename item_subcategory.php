@@ -37,8 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <style>
-    /* Same styles for form and alerts as add_category.php */
-    .container { padding: 20px; max-width: 800px; margin: auto; }
+    .container { padding: 20px; max-width: 1500px; margin: auto; }
     h1, h2 { text-align: center; margin-bottom: 20px; }
     .alert-success { background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
     .alert-error { background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
@@ -50,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 <!-- Sidebar Toggle Button -->
 <button id="sidebarToggle">&#9776;</button>
-<div class="container">
+<div id="content" class="container">
     <h1>Add New Item Subcategory</h1>
     <hr>
     <br><br>
