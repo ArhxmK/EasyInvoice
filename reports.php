@@ -5,7 +5,7 @@ require "assets/includes/header.php";
 require "assets/components/sidebar.php";
 require "assets/dbh/connector.php"; 
 
-// Function to fetch invoices with optional filters for date and customer
+// Function for invoices with optional filters for date and customer
 function getInvoices($conn, $startDate = null, $endDate = null, $customerId = null) {
     $sql = "SELECT i.invoice_no, i.date, i.customer, c.first_name, c.last_name, i.item_count, i.amount 
             FROM invoice i
@@ -33,7 +33,7 @@ function getInvoices($conn, $startDate = null, $endDate = null, $customerId = nu
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
-// Fetch customers for filtering
+// customers for filtering
 function getCustomers($conn) {
     $sql = "SELECT id, CONCAT(first_name, ' ', last_name) AS name FROM customer";
     $result = $conn->query($sql);
