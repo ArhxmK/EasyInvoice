@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .total-row {
         font-weight: bold;
         background-color: #952990;
-        color: white;
+        color: black;
     }
 
     /* Responsive Design */
